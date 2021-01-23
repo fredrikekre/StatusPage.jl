@@ -1,0 +1,66 @@
+output_directory = "/www-root"
+interval = 60
+title = "status.julialang.org"
+desc = "Status page for services hosted by JuliaLang"
+
+[[services]]
+checks = ["https://eu-central.pkg.julialang.org/meta"]
+name = "eu-central.pkg.julialang.org"
+group = "Package servers"
+[[services]]
+checks = ["https://us-west.pkg.julialang.org/meta"]
+name = "us-west.pkg.julialang.org"
+group = "Package servers"
+[[services]]
+checks = ["https://us-east.pkg.julialang.org/meta"]
+name = "us-east.pkg.julialang.org"
+group = "Package servers"
+[[services]]
+checks = ["https://us-east2.pkg.julialang.org/meta"]
+name = "us-east2.pkg.julialang.org"
+group = "Package servers"
+[[services]]
+checks = ["https://us-east-ci.pkg.julialang.org/meta"]
+name = "us-east-ci.pkg.julialang.org"
+group = "Package servers"
+[[services]]
+checks = ["https://kr.pkg.julialang.org/meta"]
+name = "kr.pkg.julialang.org"
+group = "Package servers"
+[[services]]
+checks = ["https://sg.pkg.julialang.org/meta"]
+name = "sg.pkg.julialang.org"
+group = "Package servers"
+[[services]]
+checks = ["https://in.pkg.julialang.org/meta"]
+name = "in.pkg.julialang.org"
+group = "Package servers"
+[[services]]
+checks = ["https://au.pkg.julialang.org/meta"]
+name = "au.pkg.julialang.org"
+group = "Package servers"
+[[services]]
+checks = ["https://cn-southeast.pkg.julialang.org/meta"]
+name = "cn-southeast.pkg.julialang.org"
+group = "Package servers"
+[[services]]
+checks = ["https://cn-east.pkg.julialang.org/meta"]
+name = "cn-east.pkg.julialang.org"
+group = "Package servers"
+[[services]]
+checks = ["https://cn-northeast.pkg.julialang.org/meta"]
+name = "cn-northeast.pkg.julialang.org"
+group = "Package servers"
+[[services]]
+checks = ["https://us-east.storage.juliahub.com/meta"]
+name = "us-east.storage.juliahub.com"
+group = "Storage servers"
+[[services]]
+checks = ["https://kr.storage.juliahub.com/meta"]
+name = "kr.storage.juliahub.com"
+group = "Storage servers"
+
+[influxdb]
+server = "http://influxdb:8086"
+db = "telegraf"
+measurement = "http_response"

@@ -1,0 +1,44 @@
+version: '3'
+services:
+
+  influxdb:
+    image: influxdb
+    ports:
+      - "8086:8086"
+    restart: unless-stopped
+    volumes:
+      - influxdb:/var/lib/influxdb
+
+  telegraf:
+    image: telegraf
+    depends_on:
+      - influxdb
+    restart: unless-stopped
+    volumes:
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+
+  statuspage:
+    build: ./../
+    user: $UID
+    depends_on:
+      - influxdb
+    restart: unless-stopped
+    volumes:
+      - ./config.toml:/app/config.toml
+      - ./www-root:/www-root
+
+  nginx:
+    image: staticfloat/nginx-certbot
+    restart: unless-stopped
+    ports:
+      - "80:80/tcp"
+      - "443:443/tcp"
+      # - "8080:8080/tcp"
+    volumes:
+      - letsencrypt:/etc/letsencrypt
+      - ./status-page.nginx.conf:/etc/nginx/user.conf.d/status-page.nginx.conf:ro
+      - ./www-root:/www-root
+
+volumes:
+  letsencrypt:
+  influxdb:

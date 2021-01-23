@@ -1,0 +1,16 @@
+name = "StatusPage"
+uuid = "9c2a56bb-dd26-4fb0-b1ef-5b8e5754ab25"
+version = "0.1.0"
+
+[deps]
+Artifacts = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
+InfluxDB = "41391dba-8312-11e9-2070-3fa7b1745e4b"
+OrderedCollections = "bac558e1-5e72-5ebc-8fee-abe8a469f55d"
+TOML = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
+
+[compat]
+DataFrames = "0.22"
+OrderedCollections = "1"
+julia = "1.5"
