@@ -163,7 +163,7 @@ function generate_html(io, df, group_service_map, toml)
     last_update = Dates.format(unix2datetime(time()), dateformat"yyyy-mm-dd\THH:MM:SS\Z")
     print(io, """
         </div>
-        <div class="footer">Status page built with <a href="https://github.com/fredrikekre/StatusPage.jl">StatusPage.jl</a>. Last update: $(last_update).</div>
+        <div class="footer">Status page built with <a href="https://github.com/fredrikekre/StatusPage.jl">StatusPage.jl</a> and the <a href="https://julialang.org/">Julia programming language</a>. Last update: $(last_update).</div>
 
         </body>
         </html>
