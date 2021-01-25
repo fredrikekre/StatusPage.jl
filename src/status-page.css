@@ -54,14 +54,14 @@
     margin: 20px 0;
 }
 
-.service-entry-history {
+.service-entry-details {
     margin-top: 20px;
     font-size: 0.8em;
 }
-.service-entry-history-row {
+.service-entry-details-row {
     margin-top: 5px;
 }
-.service-entry-history-days {
+.service-entry-details-days {
     display: flex;
 }
 
@@ -71,16 +71,16 @@
     margin: 0 1px;
     border-radius: 2px;
 }
-.service-entry-history .status-operational {
+.service-entry-details .status-operational {
     background: green;
 }
-.service-entry-history .status-partial-outage {
+.service-entry-details .status-partial-outage {
     background: orange;
 }
-.service-entry-history .status-major-outage {
+.service-entry-details .status-major-outage {
     background: red;
 }
-.service-entry-history .status-unknown {
+.service-entry-details .status-unknown {
     background: lightgrey;
 }
 .status-badge {
@@ -113,6 +113,10 @@ a {
     color: inherit;
 }
 
+p {
+    margin: 0;
+}
+
 /* Overload some stuff for small width screens */
 @media (max-width: 600px) {
     .service-status-day {
@@ -126,7 +130,7 @@ a {
     }
 }
 
-.service-entry input:checked ~ .service-entry-history {
+.service-entry input:checked ~ .service-entry-details {
     display: none;
 }
 label {

@@ -105,7 +105,7 @@ end
 
 function copy_assets(out)
     # CSS file
-    src_files = joinpath.(@__DIR__, ["status-page.css"])
+    src_files = joinpath.(@__DIR__, ["status-page.css", "status-page.js"])
     # JuliaMono webfonts
     jlmono = joinpath.(artifact"JuliaMono", "juliamono-0.030", "webfonts", [
             "JuliaMono-RegularLatin.woff2",
@@ -163,8 +163,8 @@ function generate_html(io, df, group_service_map, toml)
     last_update = Dates.format(unix2datetime(time()), dateformat"yyyy-mm-dd\THH:MM:SS\Z")
     print(io, """
         </div>
-        <div class="footer">Status page built with <a href="https://github.com/fredrikekre/StatusPage.jl">StatusPage.jl</a>. Last update: $(last_update).</div>
-
+        <div class="footer">Status page built with <a href="https://github.com/fredrikekre/StatusPage.jl">StatusPage.jl</a>. Last update: <span class="last-update">$(last_update)</span>.</div>
+        <script src="/assets/status-page.js"></script>
         </body>
         </html>
         """)
@@ -196,6 +196,7 @@ function print_service(io::IO, df_service, service)
         status_text = "Unknown"
         status_css = "unknown"
         status_sym = PARTIAL_SYMBOL
+        last_update = "N/A"
     else
         g_last = Bool[last(g).result for g in gdf]
         current = sum(g_last) / length(service["checks"])
@@ -212,28 +213,39 @@ function print_service(io::IO, df_service, service)
             status_css = "partial-outage"
             status_sym = PARTIAL_SYMBOL
         end
+        oldest_current_time = minimum(DateTime[last(g).time for g in gdf])
+        last_update = Dates.format(oldest_current_time, dateformat"yyyy-mm-dd\THH:MM:SS\Z")
     end
     ## Print it out
     print(io, """
         <div class="service-entry">
         <input id="$(service_name)" type="checkbox" checked="false" style="display: none;">
         <div class="service-entry-header">
+        <p>
         <span>$(service_name)</span>
         <label for="$(service_name)">
         <span class="status-badge status-$(status_css)">$(status_text) $(status_sym)</span>
         </label>
+        </p>
         </div>
-        <div class="service-entry-history">
-        <div class="service-entry-history-days">
+        <div class="service-entry-details">
+        <div class="service-entry-details-days">
         $(history)
         </div>
-        <div class="service-entry-history-row">
+        <div class="service-entry-details-row">
+        <p>
         <span>90 days ago</span>
         <span style="float: right;">Today</span>
+        </p>
         </div>
-        <div class="service-entry-history-row">
-        <!-- <span style="float: right;">Avg. uptime: 0.999 (1 day), 0.998 (7 days), 0.995 (30 days)</span> -->
+        <div class="service-entry-details-row">
+        <p style="text-align: right;">
+        Last update: <span class="last-update">$(last_update)</span>
+        </p>
         </div>
+        <!-- <div class="service-entry-details-row">
+        <span style="float: right;">Avg. uptime: 0.999 (1 day), 0.998 (7 days), 0.995 (30 days)</span>
+        </div> -->
         </div>
         </div>
         """)
