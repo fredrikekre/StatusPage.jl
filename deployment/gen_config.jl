@@ -14,19 +14,18 @@ toml["influxdb"] = Dict(
 
 services = []
 for pkgserver in [
- "https://eu-central.pkg.julialang.org",
- "https://us-west.pkg.julialang.org",
- "https://us-east.pkg.julialang.org",
- "https://us-east2.pkg.julialang.org",
- "https://us-east-ci.pkg.julialang.org",
- "https://kr.pkg.julialang.org",
- "https://sg.pkg.julialang.org",
- "https://in.pkg.julialang.org",
- "https://au.pkg.julialang.org",
- "https://cn-southeast.pkg.julialang.org",
- "https://cn-east.pkg.julialang.org",
- "https://cn-northeast.pkg.julialang.org",
- ]
+        "https://eu-central.pkg.julialang.org",
+        "https://us-west.pkg.julialang.org",
+        "https://us-east.pkg.julialang.org",
+        "https://kr.pkg.julialang.org",
+        "https://sg.pkg.julialang.org",
+        "https://in.pkg.julialang.org",
+        "https://au.pkg.julialang.org",
+        "https://sa.pkg.julialang.org",
+        "https://cn-southeast.pkg.julialang.org",
+        "https://cn-east.pkg.julialang.org",
+        "https://cn-northeast.pkg.julialang.org",
+    ]
     name = String(match(r"https://(.*)", pkgserver)[1])
     # checks = [pkgserver * "/meta", pkgserver * "/registries"]
     checks = [pkgserver * "/meta"]

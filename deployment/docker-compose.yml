@@ -28,15 +28,17 @@ services:
       - ./www-root:/www-root
 
   nginx:
-    image: staticfloat/nginx-certbot
+    image: jonasal/nginx-certbot
     restart: unless-stopped
     ports:
       - "80:80/tcp"
       - "443:443/tcp"
       # - "8080:8080/tcp"
+    env_file:
+      - .env
     volumes:
       - letsencrypt:/etc/letsencrypt
-      - ./status-page.nginx.conf:/etc/nginx/user.conf.d/status-page.nginx.conf:ro
+      - ./status-page.nginx.conf.template:/etc/nginx/templates/status-page.nginx.conf.template
       - ./www-root:/www-root
 
 volumes:

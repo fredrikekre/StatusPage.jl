@@ -16,14 +16,6 @@ checks = ["https://us-east.pkg.julialang.org/meta"]
 name = "us-east.pkg.julialang.org"
 group = "Package servers"
 [[services]]
-checks = ["https://us-east2.pkg.julialang.org/meta"]
-name = "us-east2.pkg.julialang.org"
-group = "Package servers"
-[[services]]
-checks = ["https://us-east-ci.pkg.julialang.org/meta"]
-name = "us-east-ci.pkg.julialang.org"
-group = "Package servers"
-[[services]]
 checks = ["https://kr.pkg.julialang.org/meta"]
 name = "kr.pkg.julialang.org"
 group = "Package servers"
@@ -38,6 +30,10 @@ group = "Package servers"
 [[services]]
 checks = ["https://au.pkg.julialang.org/meta"]
 name = "au.pkg.julialang.org"
+group = "Package servers"
+[[services]]
+checks = ["https://sa.pkg.julialang.org/meta"]
+name = "sa.pkg.julialang.org"
 group = "Package servers"
 [[services]]
 checks = ["https://cn-southeast.pkg.julialang.org/meta"]

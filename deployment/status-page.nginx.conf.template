@@ -1,8 +1,6 @@
-# Add default resolver to nginx `http` configuration block, so we can find our other containers at runtime
-resolver 127.0.0.11 valid=10s;
-
 server {
-    listen              443 ssl;
+    listen              443 ssl http2;
+    listen              [::]:443 ssl http2;
     # listen 8080;
     server_name         ${STATUS_FQDN};
     ssl_certificate     /etc/letsencrypt/live/${STATUS_FQDN}/fullchain.pem;
